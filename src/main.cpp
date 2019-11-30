@@ -39,16 +39,18 @@ int main(int argc, char *argv[])
 			Head.insert(r);
 		}
 	}
+
+	// Print output
 	if (output == "m")
 		Loader.print_for_matlab(rectangles);
 	else if (output == "csv")
 		Loader.print_to_csv(rectangles);
+	
+	// Plot output
 	Plotter P(Head.w);
 	for (auto &r : rectangles)
-	{
 		P.add_rectangle({r.get_corners()[0], r.get_corners()[1], r.get_corners()[0] + r.get_width(), r.get_corners()[1] + r.get_height()});
-	//break;
-	}
+	
 	P.show();
 	std::cout << "Smallest square that all the rectangles can fit is " << Head.w << " " << Head.h << std::endl;
 	

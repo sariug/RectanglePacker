@@ -5,10 +5,7 @@ PackNode::PackNode()
 	x = y = w = h = 0;
 	is_full = false;
 }
-PackNode::PackNode(int X, int Y, int W, int H) : x(X), y(Y), h(H), w(W)
-{
-	is_full = false;
-}
+PackNode::PackNode(int X, int Y, int W, int H) : x(X), y(Y), h(H), w(W), is_full(false){}
 
 void PackNode::extend(int e)
 {
