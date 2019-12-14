@@ -10,5 +10,5 @@ public:
 	int x, y, w, h;
 	bool is_full;
 	PackNode* insert(Rect& R);
-	void extend(int);
+	void extend(const int&);
 }; 
