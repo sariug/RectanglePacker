@@ -1,8 +1,9 @@
 
 #include <algorithm>
 #include <cmath>
-#include <experimental/filesystem> // GCC 7.4
+#include <filesystem> 
 #include <numeric>
+#include <execution>
 #include "PackNode.h"
 #include "Plotter.h"
 void PlotResults(int edge, std::vector<Rect> rectangles);
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
 {
 	std::string output = argv[2] ? argv[2] : "";
 
-	if (!std::experimental::filesystem::exists(argv[1]) || (output != "m" && output != "csv"))
+	if (!std::filesystem::exists(argv[1]) || (output != "m" && output != "csv"))
 	{
 		std::cout << "Please enter the correctly next time, example:\n"
 		<< "\t ./rectangle_packing /path/to/file.txt m\n" 
@@ -25,8 +26,8 @@ int main(int argc, char *argv[])
 
 	// Create an arbitrary Rectangular that we can fit all (for example sum of all heights)
 	int edge = std::sqrt<int>(std::accumulate(rectangles.begin(), rectangles.end(), 0,
-											  [](auto SUM, Rect r) { return SUM + r.area(); }));
-
+											  [](auto SUM, auto r) { return SUM + r.area(); }));
+											  
 	PackNode Head(0, 0, edge, edge);
 
 	std::cout << "Starting Square : " << Head.w << " " << Head.h << std::endl;
